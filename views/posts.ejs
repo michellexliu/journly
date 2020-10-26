@@ -1,0 +1,26 @@
+<%- include('partials/internalheader') %>
+<div class="all-posts container">
+  <h2>Hello, <%= name %></h2>
+  <%if (postList.length === 0) { %>
+    <h2>You don't have any posts! Click the + button at the bottom of the page to create your first post!</h2>
+  <% } else { postList.sort(function(a, b) {return new Date(a.date) - new Date(b.date)});}%>
+  <% for (let i = postList.length - 1; i >= 0; i--) { %>
+    <div class="post-container" onclick="location.href='/posts/<%= postList[i]._id %>'">
+      <h2><%= postList[i].date.toLocaleDateString("en-US") %></h2>
+      <h3>Sentiment: <% if (postList[i].score >= 0.5) { %>Very Positive<% } else if (postList[i].score >= 0.1) { %>Positive
+      <% } else if (postList[i].score >= 0.03) { %>
+        Slightly Positive
+      <% } else if (postList[i].score >= -0.03) { %>
+        Neutral
+      <% } else if (postList[i].score >= -0.1) { %>
+        Slightly Negative
+      <% } else if (postList[i].score >= -0.5) { %>
+        Negative
+      <% } else if (postList[i].score >= -1) { %>
+        Very Negative<% } %></h3>
+      <p><%= (postList[i].body).substring(0, 250) + "... " %> <span><a href="posts/<%= postList[i]._id %>">Read More</a></span></p>
+    </div>
+  <% } %>
+  <a href="/compose" type="submit" class="compose">+</a>
+</div>
+<%- include('partials/footer') %>

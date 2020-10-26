@@ -1,0 +1,12 @@
+<%- include("partials/internalheader") -%>
+<div class="compose-area container">
+  <h2>Talk About Your Day...</h2>
+  <form class="form-group compose-form" action="/compose" method="post" autocomplete="off">
+    <label for="date">Date</label>
+    <input type="date" class="form-control" name="date" required>
+    <label for="postBody">Post</label>
+    <textarea class="form-control" name="postBody" rows="5" cols="30" required></textarea>
+    <button class="compose-btn btn btn-primary" type="submit" name="button">Publish</button>
+  </form>
+</div>
+<%- include("partials/footer") -%>

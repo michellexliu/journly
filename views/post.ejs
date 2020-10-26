@@ -1,0 +1,18 @@
+<%- include("partials/internalheader") -%>
+<div class="all-posts container individual-post">
+  <%= console.log(post); %>
+  <h2><%= post.date.toLocaleDateString("en-US") %></h2>
+  <h3>Sentiment: <% if (post.score >= 0.5) { %>Very Positive<% } else if (post.score >= 0.1) { %>Positive
+    <% } else if (post.score >= 0.03) { %>
+      Slightly Positive
+    <% } else if (post.score >= -0.03) { %>
+      Neutral
+    <% } else if (post.score >= -0.1) { %>
+      Slightly Negative
+    <% } else if (post.score >= -0.5) { %>
+      Negative
+    <% } else if (post.score >= -1) { %>
+      Very Negative<% } %></h3>
+  <p><%= post.body %></p>
+</div>
+<%- include("partials/footer") -%>
